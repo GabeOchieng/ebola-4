@@ -1,0 +1,12 @@
+Example of printing an entire 2D array in Python:
+
+
+inf = float('inf')
+A = [[0,1,4,inf,3],
+     [1,0,2,inf,4],
+     [4,2,0,1,5],
+     [inf,inf,1,0,3],
+     [3,4,5,3,0]]
+
+print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
+      for row in A]))

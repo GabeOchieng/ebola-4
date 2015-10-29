@@ -6,6 +6,7 @@
 import xlrd
 import numpy as np    # np will be alias for numpy when calling numpy functions
 
+
 file_loc="/Users/elliottkrome/Downloads/templytics/Source_data.xlsx" # identify xls file
 
 wb=xlrd.open_workbook(file_loc) # open workbook
@@ -15,29 +16,45 @@ data=wb.sheet_by_index(0)       # pick a sheet to read in
 print data.nrows
 print data.ncols
 
+max_row=0                                #how manr rows in excel file to loop through
+max_row=max(max_row,data.nrows)
+
+
+#how many rows will our matrix be (determined by number of measles occurence)
+meas_row=0
+o=0
+for o in range(max_row):
+    if str(data.cell_value(o,0))=="Measles":   
+        meas_row=meas_row+1
+
+#make measles matrix
+arr=[[0 for x in range(4)] for x in range(meas_row)]
+
+
 
 #Col(2) is location                Col(7) is year                Col(8) is number of cases
-max_row=0 # initialize row range
-max_row=max(max_row,data.nrows)
-arr=[[0 for x in range(3)] for x in range(max_row)]
-for row in range (max_row):
-    arr[row][0]=data.cell_value(row,2)
-
-for row in range (max_row):
-    arr[row][1]=data.cell_value(row,7)
-for row in range (max_row):
-    arr[row][2]=data.cell_value(row,8)
+meas_num=0
+a="Measles"
 for row in range(max_row):
-    for col in range(3):
-        print arr[row][col]
+    if str(data.cell_value(row,0))=="Measles":
+        arr[meas_num][0] = data.cell_value(row,2)
+        arr[meas_num][1] = data.cell_value(row,7)
+        arr[meas_num][2] = data.cell_value(row,8)
+        meas_num=meas_num+1
 
-        
-name_list=[0 for x in range(max_row)]
-for name in range (max_row):
-    name_list[name]=arr[name][0]
-name_list.sort()
-for name in range(max_row):
-    print name_list[name]
+for wrow in range(meas_num):
+    print arr[wrow][0],"        ", arr[wrow][1],"        ", arr[wrow][2],"        "   
+
+print meas_num
+arr_measles=[[0 for x in range(4)] for x in range(max_row)]  
+    
+#        
+#name_list=[0 for x in range(max_row)]
+#for name in range (max_row):
+#    name_list[name]=arr[name][0]
+#name_list.sort()
+#for name in range(max_row):
+#    print name_list[name]
                    
 
 

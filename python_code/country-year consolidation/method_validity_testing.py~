@@ -1,0 +1,5 @@
+dicky = {}
+scary = "tulips"
+dicky[scary] = 5
+
+print dicky

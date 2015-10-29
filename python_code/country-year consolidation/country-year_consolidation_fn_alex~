@@ -1,0 +1,7 @@
+#max_row is the number of rows in the original datasheet and the array arr that only has 3 cols of the data
+
+ctrs = []
+
+for ctr in range(max_row):
+    for ce in range(ctrs):
+    	
